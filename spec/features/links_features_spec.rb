@@ -26,4 +26,15 @@ feature 'links' do
 
   end
 
+  context 'creating links' do
+    scenario 'prompts user to fill out a form, then displays the new link' do
+      visit '/links'
+      click_link 'Add a link'
+      fill_in 'Title', with: 'title'
+      click_button 'Create Link'
+      expect(page).to have_content 'title'
+      expect(current_path).to eq '/links'
+    end
+  end
+
 end

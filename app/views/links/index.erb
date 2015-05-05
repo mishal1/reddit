@@ -3,7 +3,16 @@
 <head>
 </head>
 <body>
-  No links yet
-  <a href='#'>Add a link</a>
+
+  <% if @links.any? %>
+    <% @links.each do |link| %>
+      <h2> <%= link.title %> </h2>
+    <% end %>
+  <% else %>
+    No links yet
+  <% end %>
+  
+  <a href="<%=new_link_path%>">Add a link</a>
+
 </body>
 </html>
