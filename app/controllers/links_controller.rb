@@ -26,6 +26,13 @@ class LinksController < ApplicationController
     redirect_to '/links'
   end
 
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+    flash[:notice] = 'Link deleted successfully'
+    redirect_to '/links'
+  end
+
   def link_params
     params.require(:link).permit(:title)
   end

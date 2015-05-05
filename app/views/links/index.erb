@@ -8,6 +8,7 @@
     <% @links.each do |link| %>
       <h2> <%= link_to link.title, link_path(link) %> </h2>
       <p><%= link_to 'Edit', edit_link_path(link) %></p>
+      <p><%= link_to 'Delete', link_path(link), method: :delete %></p>
     <% end %>
   <% else %>
     No links yet

@@ -39,7 +39,7 @@ feature 'links' do
 
   context 'viewing links' do
 
-    let!(:link){Link.create(title: 'something')}
+    let!(:link) {Link.create(title: 'something')}
 
     scenario 'lets a user view a link' do
       visit '/links'
@@ -61,6 +61,19 @@ feature 'links' do
       click_button 'Update Link'
       expect(page).to have_content 'something else'
       expect(current_path).to eq '/links'
+    end
+
+  end
+
+  context 'deleting links' do
+
+    before {Link.create title: 'something'}
+
+    scenario 'removes a link when a user clicks a delete link' do
+      visit '/links'
+      click_link 'Delete'
+      expect(page).not_to have_content 'something'
+      expect(page).to have_content 'Link deleted successfully'
     end
 
   end
