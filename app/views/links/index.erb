@@ -9,6 +9,19 @@
       <h2> <%= link_to link.title, link_path(link) %> </h2>
       <p><%= link_to 'Edit', edit_link_path(link) %></p>
       <p><%= link_to 'Delete', link_path(link), method: :delete %></p>
+      <p><%= link_to 'Comment', new_link_comment_path(link) %></p>
+
+      <% if link.comments.any? %>
+        <ul>
+          <% link.comments.each do |comment| %>
+          <li>
+            <%= comment.thoughts %>, <strong><%= comment.rating %></strong>/5
+          </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No comments</p>
+      <% end %>
     <% end %>
   <% else %>
     No links yet
