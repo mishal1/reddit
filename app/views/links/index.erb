@@ -6,7 +6,8 @@
 
   <% if @links.any? %>
     <% @links.each do |link| %>
-      <h2> <%= link.title %> </h2>
+      <h2> <%= link_to link.title, link_path(link) %> </h2>
+      <p><%= link_to 'Edit', edit_link_path(link) %></p>
     <% end %>
   <% else %>
     No links yet

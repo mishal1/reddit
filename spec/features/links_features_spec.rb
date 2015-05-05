@@ -37,4 +37,32 @@ feature 'links' do
     end
   end
 
+  context 'viewing links' do
+
+    let!(:link){Link.create(title: 'something')}
+
+    scenario 'lets a user view a link' do
+      visit '/links'
+      click_link 'something'
+      expect(page).to have_content 'something'
+      expect(current_path).to eq "/links/#{link.id}"
+    end
+
+  end
+
+  context 'editing links' do
+
+    before {Link.create title: 'something'}
+
+    scenario 'let a user edit a restaurant' do
+      visit '/links'
+      click_link 'Edit'
+      fill_in 'Title', with: 'something else'
+      click_button 'Update Link'
+      expect(page).to have_content 'something else'
+      expect(current_path).to eq '/links'
+    end
+
+  end
+
 end

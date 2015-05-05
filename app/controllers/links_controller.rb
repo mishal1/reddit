@@ -12,6 +12,20 @@ class LinksController < ApplicationController
     redirect_to '/links'
   end
 
+  def show
+    @link = Link.find(params[:id])
+  end
+
+  def edit
+    @link = Link.find(params[:id])
+  end
+
+  def update
+    @link = Link.find(params[:id])
+    @link.update(link_params)
+    redirect_to '/links'
+  end
+
   def link_params
     params.require(:link).permit(:title)
   end
