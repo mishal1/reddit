@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+
   def index
     @links = Link.all
   end
@@ -8,33 +9,41 @@ class LinksController < ApplicationController
   end
 
   def create
-    Link.create(link_params)
-    redirect_to '/links'
+    @link = Link.new(link_params)
+    if @link.save
+      redirect_to '/links'
+    else
+      render 'new'
+    end
   end
 
   def show
-    @link = Link.find(params[:id])
+    @link = find_link
   end
 
   def edit
-    @link = Link.find(params[:id])
+    @link = find_link
   end
 
   def update
-    @link = Link.find(params[:id])
+    @link = find_link
     @link.update(link_params)
     redirect_to '/links'
   end
 
   def destroy
-    @link = Link.find(params[:id])
+    @link = find_link
     @link.destroy
     flash[:notice] = 'Link deleted successfully'
     redirect_to '/links'
   end
 
   def link_params
-    params.require(:link).permit(:title)
+    params.require(:link).permit(:title, :url)
+  end
+
+  def find_link
+    Link.find(params[:id])
   end
 
 end
