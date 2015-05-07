@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'commenting' do
 
   before do 
-    Room.create name: 'something'
+    @room = Room.create name: 'something'
     visit '/rooms'
     click_link 'something'
     click_link 'Comment'
@@ -12,17 +12,8 @@ feature 'commenting' do
   end
 
   scenario 'allows a user to leave a comment' do
-    # expect(current_path).to eq '/rooms'
+    expect(current_path).to eq "/rooms/#{@room.id}"
     expect(page).to have_content 'blah'
   end
-
-#   context 'user deletes link' do
-
-#     scenario 'deletes comments automatically' do
-#       click_link 'Delete'
-#       expect(page).not_to have_content 'blah, 3/5'
-#     end
-
-#   end
 
 end

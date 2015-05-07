@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
-      redirect_to '/rooms'
+      redirect_to '/'
     else
       render 'new'
     end
@@ -27,14 +27,14 @@ class RoomsController < ApplicationController
   def update
     @room = find_room
     @room.update(room_params)
-    redirect_to '/rooms'
+    redirect_to '/'
   end
 
   def destroy
     @room = find_room
     @room.destroy
     flash[:notice] = 'room deleted successfully'
-    redirect_to '/rooms'
+    redirect_to '/'
   end
 
   def room_params

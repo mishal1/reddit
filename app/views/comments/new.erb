@@ -7,8 +7,6 @@
 <%= form_for [@room, @comment ] do |f| %>
   <%= f.label :thoughts %>
   <%= f.text_area :thoughts %>
-  <%= f.label :rating %>
-  <%= f.select :rating, (1..5) %>
   <%= f.submit 'Leave comment' %>
 <% end %>
 

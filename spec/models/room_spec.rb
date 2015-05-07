@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Room, type: :model do
-#   it { is_expected.to have_many :comments }
+  it { is_expected.to have_many :comments }
 
   it 'is not valid with a name of less than three characters' do
     room = Room.new(name: "ab")

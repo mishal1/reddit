@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'room' do
 
   def add_room(name = 'name')
-    visit '/rooms'
+    visit '/'
     click_link 'Add a room'
     fill_in 'Name', with: name
     fill_in 'Description', with: 'description'
@@ -13,7 +13,7 @@ feature 'room' do
   context 'no rooms have been added' do
 
     scenario 'should display a prompt to add a room' do
-      visit '/rooms'
+      visit '/'
       expect(page).to have_content 'No rooms yet'
       expect(page).to have_link 'Add a room'
     end
@@ -27,24 +27,24 @@ feature 'room' do
     context 'creating rooms' do
       scenario 'prompts user to fill out a form, then displays the new room' do
         expect(page).to have_content 'name: description'
-        expect(current_path).to eq '/rooms'
+        expect(current_path).to eq '/'
       end
     end
 
     context 'editing rooms' do
       scenario 'let a user edit a restaurant' do
-        visit '/rooms'
+        visit '/'
         click_link 'Edit'
         fill_in 'Name', with: 'something else'
         click_button 'Update Room'
         expect(page).to have_content 'something else'
-        expect(current_path).to eq '/rooms'
+        expect(current_path).to eq '/'
       end
     end
 
     context 'deleting rooms' do
       scenario 'removes a room when a user clicks a delete room' do
-        visit '/rooms'
+        visit '/'
         click_link 'Delete'
         expect(page).not_to have_content 'something'
         expect(page).to have_content 'room deleted successfully'
@@ -58,7 +58,7 @@ feature 'room' do
     let!(:room) { Room.create(name: 'something', description: 'des') }
 
     scenario 'lets a user view a room' do
-      visit '/rooms'
+      visit '/'
       click_link 'something'
       expect(page).to have_content 'something'
       expect(current_path).to eq "/rooms/#{room.id}"
