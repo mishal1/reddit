@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+  <% if @rooms.any? %>
+    <% @rooms.each do |room| %>
+      <h2> <%= link_to "#{room.name}: #{room.description}", room_path(room) %> </h2>
+      <p><%= link_to 'Edit', edit_room_path(room) %></p>
+      <p><%= link_to 'Delete', room_path(room), method: :delete %></p>
+    <% end %>
+  <% else %>
+    No rooms yet
+  <% end %>
+  
+  <a href="<%=new_room_path%>">Add a room</a>
+
+</body>
+</html>

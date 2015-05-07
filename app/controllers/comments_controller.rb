@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
 
   def new
-    @link = Link.find(params[:link_id])
+    @room = Room.find(params[:room_id])
     @comment = Comment.new
   end
 
   def create
-    @link = Link.find(params[:link_id])
-    @link.comments.create(comment_params)
-    redirect_to links_path
+    @room = Room.find(params[:room_id])
+    @room.comments.create(comment_params)
+    redirect_to rooms_path
   end
 
   def comment_params

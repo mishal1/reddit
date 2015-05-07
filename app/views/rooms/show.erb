@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<p> <%= @room.name %></p>
+<p> <%= @room.description %></p>
+
+<p><%= link_to 'Comment', new_room_comment_path(@room) %></p>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :links do
+  resources :rooms do
     resources :comments
   end
 
-  root to: "links#index"
+  root to: "rooms#index"
 
 end
