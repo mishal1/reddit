@@ -14,7 +14,9 @@
     No rooms yet
   <% end %>
   
-  <a href="<%=new_room_path%>">Add a room</a>
+  <% if user_signed_in? %>
+    <a href="<%=new_room_path%>">Add a room</a>
+  <% end %>
 
 </body>
 </html>

@@ -13,13 +13,18 @@
       <li>
         <%= comment.thoughts %>
       </li>
+      <p><%= link_to 'Delete Comment', room_comment_path(@room, comment), method: :delete %></p>
+      <p><%= link_to 'Edit Comment', edit_room_comment_path(@room, comment) %></p>
       <% end %>
     </ul>
   <% else %>
     <p>No comments</p>
   <% end %>
 
-  <p><%= link_to 'Comment', new_room_comment_path(@room) %></p>
+
+    <p><%= link_to 'Comment', new_room_comment_path(@room) %></p>
+
+
 
 </body>
 </html>
